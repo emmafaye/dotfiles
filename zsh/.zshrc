@@ -109,6 +109,7 @@ alias gcam='git commit --amend --c' # Amend commit message
 alias gcm='git commit -m' # Commit with message
 alias gs='git status'
 alias gl='git log --date=short --format="%C(auto)%h %Cgreen%ad %Cred%<(18)%an %Creset%s"'
+alias grmd='git ls-files --deleted -z | xargs -0 git rm' # Remove deleted files from git
 
 # Custom functions
 alias ls='exa -lah -s type --time-style=iso --icons --git'
