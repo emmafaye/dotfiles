@@ -1,0 +1,251 @@
+// For format details, see https://aka.ms/vscode-remote/devcontainer.json or this file's README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/main/containers/docker-existing-dockerfile
+{
+    "name": "discord-interview",
+    // Sets the run context to one level up instead of the .devcontainer folder.
+    "context": "..",
+    // Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
+    "dockerFile": "../Dockerfile",
+    "runArgs": ["--name", "discord-interview", "--env-file", ".env", "-p", "3000:3000"],
+    // Node Workspace
+    // "workspaceMount": "source=${localWorkspaceFolder},target=/home/node/app,type=bind,consistency=cached",
+    // "workspaceFolder": "/home/node/app",
+
+    "workspaceMount": "source=${localWorkspaceFolder},target=/usr/src/app,type=bind,consistency=cached",
+    "workspaceFolder": "/usr/src/app",
+
+    // Jekyll Workspace
+    // "workspaceMount": "source=${localWorkspaceFolder},target=/srv/jekyll,type=bind,consistency=cached",
+    // "workspaceFolder": "/srv/jekyll",
+    "shutdownAction": "stopContainer",
+
+    // Set *default* container specific settings.json values on container create.
+    "settings": {
+        // "dotfiles.repository": "",
+        // "dotfiles.targetPath": "~/dotfiles",
+        // "dotfiles.installCommand": "",
+        
+        // General
+        "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+        "window.titleBarStyle": "custom",
+        "window.customMenuBarAltFocus": false,
+
+        // Terminal
+        "terminal.integrated.shell.windows": "C:\\WINDOWS\\system32\\wsl.exe -d Alpine",
+        "terminal.external.windowsExec": "C:\\WINDOWS\\system32\\wsl.exe -d Alpine",
+        "terminal.integrated.shell.linux": "/bin/zsh",
+        // "terminal.integrated.automationShell.windows": "C:\\WINDOWS\\system32\\wsl.exe -d Alpine",
+        // "terminal.integrated.automationShell.linux": "/bin/zsh",
+        // The below terminal configuration isn't working for whatever reason, I'm using the above configuration for now.
+        "terminal.integrated.profiles.windows": {
+            "PowerShell": {
+                "source": "PowerShell",
+                "icon": "terminal-powershell"
+            },
+            "Command Prompt": {
+                "path": ["${env:windir}\\Sysnative\\cmd.exe", "${env:windir}\\System32\\cmd.exe"],
+                "icon": "terminal-cmd"
+            },
+            "Git Bash": {
+                "path": ["C:\\Program files\\Git\\bin\\bash.exe"],
+                "icon": "terminal-bash"
+            },
+            "Windows Terminal": {
+                "path": ["C:\\Users\\emzfa\\scoop\\apps\\windows-terminal\\current\\WindowsTerminal.exe"],
+                "icon": "terminal"
+            },
+            "Windows Terminal (Alpine)": {
+                "path": ["C:\\WINDOWS\\system32\\wsl.exe -d Alpine"],
+                "icon": "terminal"
+            }
+        },
+        "terminal.integrated.profiles.linux": {
+            "zsh": {
+                "path": "/bin/zsh",
+                "args": ["-l"],
+                "icon": "cloud"
+            }
+        },
+        // "terminal.integrated.automationProfile.windows": {
+        //     "path": "C:\\WINDOWS\\system32\\wsl.exe -d Alpine",
+        //     "icon": "terminal"
+        // },
+        // "terminal.integrated.automationProfile.linux": {
+        //     "path": "/bin/zsh",
+        //     "args": ["-l"],
+        //     "icon": "cloud"
+        // },
+        "terminal.integrated.defaultProfile.windows": "Windows Terminal (Alpine)",
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "terminal.integrated.copyOnSelection": true,
+        "terminal.integrated.rightClickBehavior": "paste",
+        "terminal.integrated.cursorBlinking": true,
+        "terminal.integrated.fontWeightBold": "500",
+        "terminal.integrated.shellIntegration.enabled": true,
+        "terminal.integrated.shellIntegration.decorationsEnabled": true,
+        "terminal.integrated.shellIntegration.decorationIcon": "", //"circle-outline",
+        "terminal.integrated.shellIntegration.decorationIconSuccess": "circle-check",
+        "terminal.integrated.shellIntegration.decorationIconError": "circle-cross",
+
+        "git.mergeEditor": true,
+
+        // // Status Bar
+        // "resmongraphical.cpuusage.show": true, // Show CPU Usage. In Windows, this percentage is calculated with processor time, which doesn't quite match the task manager figure.
+        // "resmongraphical.mem.show": true, // Show consumed and total memory as a fraction.
+        // "resmongraphical.network.show": true, // Toggles the display of network information.
+        // "resmongraphical.cputemp.show": false, // Show CPU Temperature.
+        // "resmongraphical.cpufreq.show": false, // Show CPU Frequency.
+        // "resmongraphical.battery.show": false, // Show battery percentage remaining.
+        // "resmongraphical.disk.show": false, // Toggles the display of disk space information.
+        // "resmongraphical.cpuusage.allcpus.show": false,
+
+        // "resmongraphical.cpuusage.style": "CircleColor",
+        // "resmongraphical.mem.style": "CircleColor",
+        // "resmongraphical.network.style": "CircleColor",
+
+        "resmongraphical.alignLeft": true,
+
+        // Jekyll
+        "scss.lint.unknownAtRules": "ignore",
+        "css.lint.unknownAtRules": "ignore",
+        "[markdown]": {
+            "editor.quickSuggestions": true
+        },
+        "liquid.format": true,
+
+        // Default Formatter
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+        // Python
+        "python.linting.pylintEnabled": true,
+        "python.linting.enabled": true,
+        "python.pythonPath": "/usr/local/bin/python",
+        "python.jediEnabled": false,
+        "python.linting.pylintArgs": ["--load-plugins"],
+
+        // Extension Type
+        // ui        - Cannot directly access files in the remote workspace (themes, snippets, language grammars, and keymaps)
+        // workspace - Run on the same machine as where the workspace is located. When in a local workspace, Workspace Extensions run on the local machine
+        // https://code.visualstudio.com/api/advanced-topics/remote-extensions
+        "remote.extensionKind": {
+            "ms-azuretools.vscode-docker": ["workspace"],
+            "thomaskarachristos.terminal-statusbar": ["workspace"],
+            "fabiospampinato.vscode-todo-plus": ["workspace"]
+        }
+    },
+
+    // Add the IDs of extensions you want installed when the container is created.
+    "extensions": [
+        // Theme / IDE
+        "dracula-theme.theme-dracula",
+        "oderwat.indent-rainbow",
+        "PKief.material-icon-theme", // Icon Theme
+        "ms-azuretools.vscode-docker", // Docker Panel
+
+        // QoL
+        "fabiospampinato.vscode-todo-plus", // Todo List for TODO files and Embedded todos
+        "actboy168.tasks", // Status Bar Task Customization
+        "alefragnani.Bookmarks", // Code Line Bookmarks
+        "liamhammett.inline-parameters", // Inline parameters in functions
+        "jasonlhy.hungry-delete", // Delete to the end of the line
+        "mlazzarini.pair-programming-timer", // Countdown Timer for Interviews and Pair Programming
+        // "joshabb.resmongraphical", // Shows CPU Usage, Memory, and Disk Usage.
+        // "spmeesseman.vscode-taskexplorer", // Shows All Tasks in the Task Explorer
+
+        // AI-Assisted
+        "visualstudioexptteam.vscodeintellicode",
+        "GitHub.copilot",
+
+        // Code Reviews
+        "github.vscode-pull-request-github", // Review and manage GitHub pull requests and issues
+
+        // HTML / CSS
+        "mrmlnc.vscode-scss", // SCSS & SASS
+
+        // JavaScript / TypeScript
+        "snyk-security.vscode-vuln-cost", // Vulnerability Cost
+        "wix.vscode-import-cost", // Import Cost
+
+        // Linting
+        "dbaeumer.vscode-eslint",
+
+        // React
+        // "pranshuagrawal.create-component", // Create React Component
+        // "planbcoding.vscode-react-refactor", // Quickly refactor React components
+
+        // // Jekyll
+        // "2sherpas.2sherpas",
+        // "sissel.shopify-liquid",
+        // "rohgarg.jekyll-post",
+        // "osteele.jekyll",
+        // "eliostruyf.vscode-front-matter",
+
+        // // Ruby
+        // "rebornix.Ruby", // Ruby language support and debugging
+
+        // // Python
+        // "ms-python.python", // IntelliSense, Linting, Debugging
+
+        // // XML
+        // "redhat.vscode-xml", // XML Language Support
+
+        // dotenv
+        "mikestead.dotenv", // .env Language Support
+
+        // TOML
+        "tamasfe.even-better-toml", // .toml Language Support
+
+        // VIM
+        "XadillaX.viml", // VIM Language Support
+
+        // Beautifies the following languages:
+        // JavaScript · TypeScript · Flow · JSX · JSON
+        // CSS · SCSS · Less
+        // HTML · Vue · Angular HANDLEBARS · Ember · Glimmer
+        // GraphQL · Markdown · YAML
+        "esbenp.prettier-vscode"
+
+        // // Linter & Formatter
+        // "Trunk.io"
+    ],
+
+    // Use 'forwardPorts' to make a list of ports inside the container available locally.
+    // "forwardPorts": [],
+
+    // https://containers.dev/implementors/json_reference/#lifecycle-scripts
+    // A command string or list of command arguments to run on the host machine before the container is created.
+    "initializeCommand": "",
+
+    // This command is the first of three (along with updateContentCommand and postCreateCommand) that finalizes container
+    // setup when a dev container is created. It and subsequent commands execute inside the container immediately after it
+    // has started for the first time.
+    "onCreateCommand": ["/bin/zsh", "${containerWorkspaceFolder}/.devcontainer/post-container-install.zsh"],
+
+    // This command is the second of three that finalizes container setup when a dev container is created.
+    // It executes inside the container after onCreateCommand whenever new content is available in the source tree during the creation process.
+    "updateContentCommand": "",
+
+    // This command is the last of three that finalizes container setup when a dev container is created.
+    // It happens after updateContentCommand and once the dev container has been assigned to a user for the first time.
+    "postCreateCommand": "",
+
+    // A command to run each time the container is successfully started.
+    "postStartCommand": "",
+
+    // A command to run each time a tool has successfully attached to the container.
+    "postAttachCommand": "",
+
+    // This allows you to use onCreateCommand or updateContentCommand for steps that must happen before devcontainer.json
+    // supporting tools connect while still using postCreateCommand for steps that can happen behind the scenes afterwards.
+    "waitFor": "updateContentCommand",
+
+    // Uncomment when using a ptrace-based debugger like C++, Go, and Rust
+    // "runArgs": [ "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined" ],
+
+    // Uncomment to use the Docker CLI from inside the container. See https://aka.ms/vscode-remote/samples/docker-in-docker.
+    // "mounts": [ "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind" ],
+
+    // Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
+    "remoteUser": "root"
+    // "remoteEnv": { "MY_VARIABLE": "some-value" }
+}
