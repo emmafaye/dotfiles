@@ -9,8 +9,7 @@ local M = {}
 -- }
 
 M.ui = {
-    theme = "chadracula",
-    -- theme_toggle = { "gruvchad", "gruvbox_light" },
+    theme = 'chadracula'
 }
 
 return M

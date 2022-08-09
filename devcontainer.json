@@ -18,12 +18,18 @@
     // "workspaceMount": "source=${localWorkspaceFolder},target=/srv/jekyll,type=bind,consistency=cached",
     // "workspaceFolder": "/srv/jekyll",
     "shutdownAction": "stopContainer",
-
+    
+    // C:\Users\emzfa\.vscode\extensions\ms-vscode-remote.remote-containers-0.243.0\dist\node_modules\vscode-dev-containers\container-features\devcontainer-features.json
+    "features": {},
+    
     // Set *default* container specific settings.json values on container create.
     "settings": {
         // "dotfiles.repository": "",
         // "dotfiles.targetPath": "~/dotfiles",
         // "dotfiles.installCommand": "",
+
+        "git.mergeEditor": true,
+        // "remote.containers.copyGitConfig": true,
         
         // General
         "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
@@ -82,12 +88,10 @@
         "terminal.integrated.cursorBlinking": true,
         "terminal.integrated.fontWeightBold": "500",
         "terminal.integrated.shellIntegration.enabled": true,
-        "terminal.integrated.shellIntegration.decorationsEnabled": true,
+        "terminal.integrated.shellIntegration.decorationsEnabled": "both",
         "terminal.integrated.shellIntegration.decorationIcon": "", //"circle-outline",
         "terminal.integrated.shellIntegration.decorationIconSuccess": "circle-check",
         "terminal.integrated.shellIntegration.decorationIconError": "circle-cross",
-
-        "git.mergeEditor": true,
 
         // // Status Bar
         // "resmongraphical.cpuusage.show": true, // Show CPU Usage. In Windows, this percentage is calculated with processor time, which doesn't quite match the task manager figure.
@@ -103,13 +107,17 @@
         // "resmongraphical.mem.style": "CircleColor",
         // "resmongraphical.network.style": "CircleColor",
 
-        "resmongraphical.alignLeft": true,
+        // "resmongraphical.alignLeft": true,
 
         // Jekyll
         "scss.lint.unknownAtRules": "ignore",
         "css.lint.unknownAtRules": "ignore",
         "[markdown]": {
-            "editor.quickSuggestions": true
+            "editor.quickSuggestions": {
+                "comments": "on",
+                "strings": "on",
+                "other": "on"
+            }
         },
         "liquid.format": true,
 
@@ -137,10 +145,11 @@
     // Add the IDs of extensions you want installed when the container is created.
     "extensions": [
         // Theme / IDE
-        "dracula-theme.theme-dracula",
-        "oderwat.indent-rainbow",
-        "PKief.material-icon-theme", // Icon Theme
+        "dracula-theme.theme-dracula", // IDE Theme
+        "PKief.material-icon-theme", // File Icons 
+        "antfu.icons-carbon", // Product Icons
         "ms-azuretools.vscode-docker", // Docker Panel
+        "iocave.customize-ui", // Customize UI
 
         // QoL
         "fabiospampinato.vscode-todo-plus", // Todo List for TODO files and Embedded todos
@@ -149,6 +158,7 @@
         "liamhammett.inline-parameters", // Inline parameters in functions
         "jasonlhy.hungry-delete", // Delete to the end of the line
         "mlazzarini.pair-programming-timer", // Countdown Timer for Interviews and Pair Programming
+        "mngrm3a.shell-command", // Allows you to run VS Code commands from tasks.json
         // "joshabb.resmongraphical", // Shows CPU Usage, Memory, and Disk Usage.
         // "spmeesseman.vscode-taskexplorer", // Shows All Tasks in the Task Explorer
 

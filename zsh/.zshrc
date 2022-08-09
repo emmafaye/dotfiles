@@ -81,14 +81,24 @@ source $HOME/.zsh-autocomplete.zsh
 export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-    export EDITOR='vim'
-else
-    export EDITOR='mvim'
-fi
+# if [[ -n $SSH_CONNECTION ]]; then
+#     export EDITOR='vim'
+# else
+#     export EDITOR='mvim'
+# fi
 
 # Compilation flags
 # export ARCHFLAGS='-arch x86_64'
+
+if [ -z "$SSH_AUTH_SOCK" ]; then
+    # Check for a currently running instance of the agent
+    RUNNING_AGENT="`ps -ax | grep 'ssh-agent -s' | grep -v grep | wc -l | tr -d '[:space:]'`"
+    if [ "$RUNNING_AGENT" = "0" ]; then
+        # Launch a new instance of the agent
+        ssh-agent -s &> $HOME/.ssh/ssh-agent
+    fi
+    eval `cat $HOME/.ssh/ssh-agent`
+fi
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -110,6 +120,7 @@ alias gcm='git commit -m' # Commit with message
 alias gs='git status'
 alias gl='git log --date=short --format="%C(auto)%h %Cgreen%ad %Cred%<(18)%an %Creset%s"'
 alias grmd='git ls-files --deleted -z | xargs -0 git rm' # Remove deleted files from git
+alias gco='git checkout main || git checkout master' # Checkout branch main or master
 
 # Custom functions
 alias ls='exa -lah -s type --time-style=iso --icons --git'
@@ -122,12 +133,34 @@ alias node_serve='npm install http-server -g && http-server'
 alias reload='cls; source ~/.zshrc'
 alias wn='set_win_title'
 alias vim='nvim'
+alias vimdiff='nvim -d'
 
 # Directory Shortcuts
 alias app='/usr/src/app'
 alias home='~/'
 alias npm_modules='/usr/local/lib/node_modules'
 alias zsh_custom='/root/.oh-my-zsh/custom'
+
+# Ignore dollar sign from beginning of lines
+alias '$'='echo "$COLOR_YELLOW $COLOR_GRAY Whoops! Looks like you have a rogue \"$\", ignoring that...$COLOR_NC";'
+
+export COLOR_NC='\e[0m' # No Color
+export COLOR_BLACK='\e[0;30m'
+export COLOR_GRAY='\e[1;30m'
+export COLOR_RED='\e[0;31m'
+export COLOR_LIGHT_RED='\e[1;31m'
+export COLOR_GREEN='\e[0;32m'
+export COLOR_LIGHT_GREEN='\e[1;32m'
+export COLOR_BROWN='\e[0;33m'
+export COLOR_YELLOW='\e[1;33m'
+export COLOR_BLUE='\e[0;34m'
+export COLOR_LIGHT_BLUE='\e[1;34m'
+export COLOR_PURPLE='\e[0;35m'
+export COLOR_LIGHT_PURPLE='\e[1;35m'
+export COLOR_CYAN='\e[0;36m'
+export COLOR_LIGHT_CYAN='\e[1;36m'
+export COLOR_LIGHT_GRAY='\e[0;37m'
+export COLOR_WHITE='\e[1;37m'
 
 function chpwd() {
     emulate -L zsh

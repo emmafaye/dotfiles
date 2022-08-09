@@ -1,7 +1,7 @@
 #!/bin/zsh
 
-# SSH & GitHub CLI
-apk update && apk add --no-cache openssh openssh-keygen github-cli && apk upgrade
+# SSH, GPG Keys & GitHub CLI
+apk update && apk add --no-cache openssh openssh-keygen github-cli gnupg && apk upgrade
 
 # ZSH Plugins
 git clone https://github.com/marlonrichert/zsh-autocomplete.git ${ZSH_CUSTOM}/plugins/zsh-autocomplete
@@ -18,8 +18,9 @@ apk update && apk add --no-cache alpine-sdk ripgrep && apk upgrade # Needed for 
 # apk update && apk add --no-cache gcc build-essential ripgrep && apk upgrade # Needed for Lua configs and Telescope
 git clone https://github.com/NvChad/NvChad ${HOME_PATH}/.config/nvim --depth 1
 mkdir -p ${NVIM_PATH}/lua/custom
-mv ${HOME_PATH}/init.lua ${HOME_PATH}/chadrc.lua ${NVIM_PATH}/lua/custom/
+cp ${WORK_PATH}/.devcontainer/nvim/init.lua ${WORK_PATH}/.devcontainer/nvim/chadrc.lua ${NVIM_PATH}/lua/custom/
 nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+# TODO: Figure out why it doesn't work after first run and configure plugins correctly
 
 # fd - alternative to find with built-in gitignore support
 apk update && apk add --no-cache fd && apk upgrade

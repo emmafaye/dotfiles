@@ -131,17 +131,17 @@ format = '[\($state( $progress_current of $progress_total)\)]($style) '
 
 [git_status]
 style = "bg:#FCA17D"
-format = '[[($all_status$ahead_behind )](bg:#FCA17D)]($style)'
+format = '[[($all_status$ahead_behind)](bg:#FCA17D)]($style)'
 conflicted = " "
-ahead = " ×${count}"
-behind = "羽 ×${count}"
-diverged = "נּ  ×${ahead_count} 羽 ×${behind_count}"
-untracked = " ×${count}"
+ahead = " ×${count} "
+behind = "羽 ×${count} "
+diverged = "נּ  ×${ahead_count} 羽 ×${behind_count} "
+untracked = " ×${count} "
 stashed = " "
-modified = " ×${count}"
-staged = "蠟 ×${count}"
-renamed = "凜 ×${count}"
-deleted = " ×${count}"
+modified = " ×${count} "
+staged = "蠟×${count} "
+renamed = "凜 ×${count} "
+deleted = " ×${count} "
 
 [hg_branch]
 symbol = " "
