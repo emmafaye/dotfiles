@@ -1,0 +1,37 @@
+[user]
+    email = emzfaye@gmail.com
+    name = Emma Faye
+    autocrlf = false
+    
+[init]
+	defaultBranch = main
+
+[diff]
+    tool = vscode
+    # tool = vimdiff
+
+[difftool "vscode"]
+    cmd = code --wait --diff $LOCAL $REMOTE
+
+# [difftool "vimdiff"]
+#     cmd = nvim -d "$LOCAL" "$REMOTE"
+
+[alias]
+  com = !git switch "$(git config init.defaultBranch)"
+
+# [difftool]
+#     prompt = true
+# [diff]
+#     tool = nvimdiff
+# [difftool "nvimdiff"]
+#     cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+
+# [diff]
+#     tool = vimdiff
+# [merge]
+#     tool = vimdiff
+# [difftool]
+#     prompt = false
+
+[credential]
+	helper = "!f() { /root/.vscode-server/bin/e4503b30fc78200f846c62cf8091b76ff5547662/node /tmp/vscode-remote-containers-a57b3b89c9b935a6b636b6685aa876107992ec54.js $*; }; f"
