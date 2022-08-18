@@ -32,6 +32,3 @@
 #     tool = vimdiff
 # [difftool]
 #     prompt = false
-
-[credential]
-	helper = "!f() { /root/.vscode-server/bin/e4503b30fc78200f846c62cf8091b76ff5547662/node /tmp/vscode-remote-containers-a57b3b89c9b935a6b636b6685aa876107992ec54.js $*; }; f"

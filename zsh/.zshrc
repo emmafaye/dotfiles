@@ -118,10 +118,10 @@ alias gca='git commit --amend'
 alias gcam='git commit --amend --c' # Amend commit message
 alias gcm='git commit -m' # Commit with message
 alias gs='git status'
-# alias gl='git log --date=short --format="%C(auto)%h %Cgreen%ad %Cred%<(18)%an %Creset%s"'
 alias gl='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
 alias grmd='git ls-files --deleted -z | xargs -0 git rm' # Remove deleted files from git
-alias gco=git_checkout_fallback # Checkout branch main or master
+alias gco=git checkout main # Checkout branch main
+# alias gco=git_checkout_fallback # Checkout branch main or master
 
 # Custom functions
 alias ls='exa -lah -s type --time-style=iso --icons --git'
