@@ -1,12 +1,12 @@
 // For format details, see https://aka.ms/vscode-remote/devcontainer.json or this file's README at:
 // https://github.com/microsoft/vscode-dev-containers/tree/main/containers/docker-existing-dockerfile
 {
-    "name": "discord-interview",
+    "name": "my-remote-env",
     // Sets the run context to one level up instead of the .devcontainer folder.
     "context": "..",
     // Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
     "dockerFile": "../Dockerfile",
-    "runArgs": ["--name", "discord-interview", "--env-file", ".env", "-p", "3000:3000"],
+    "runArgs": ["--name", "my-remote-env", "--env-file", ".env", "-p", "3000:3000"],
     // Node Workspace
     // "workspaceMount": "source=${localWorkspaceFolder},target=/home/node/app,type=bind,consistency=cached",
     // "workspaceFolder": "/home/node/app",
