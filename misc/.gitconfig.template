@@ -1,0 +1,14 @@
+[user]
+    autocrlf = false
+    
+[init]
+	defaultBranch = main
+
+[diff]
+    tool = vscode
+
+[difftool "vscode"]
+    cmd = code --wait --diff $LOCAL $REMOTE
+
+[alias]
+  com = !git switch "$(git config init.defaultBranch)"
