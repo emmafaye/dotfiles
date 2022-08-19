@@ -1,0 +1,5 @@
+# Set the default behavior, in case people don't have core.autocrlf set.
+
+# We're always going to be working in a headless Unix environment
+# so we'll ensure all text files use Unix-style line endings.
+* text=auto eol=lf
