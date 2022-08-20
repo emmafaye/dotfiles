@@ -7,6 +7,7 @@ apk update && apk add --no-cache openssh openssh-keygen github-cli gnupg && apk 
 git clone https://github.com/marlonrichert/zsh-autocomplete.git ${ZSH_CUSTOM}/plugins/zsh-autocomplete
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting
+git clone https://github.com/wfxr/forgit.git ${ZSH_CUSTOM}/plugins/forgit
 
 # Starship - Cross-shell Command Prompt
 apk update && apk add --no-cache starship && apk upgrade
@@ -21,6 +22,9 @@ mkdir -p ${NVIM_PATH}/lua/custom
 cp ${WORK_PATH}/.devcontainer/nvim/init.lua ${WORK_PATH}/.devcontainer/nvim/chadrc.lua ${NVIM_PATH}/lua/custom/
 nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 # TODO: Figure out why it doesn't work after first run and configure plugins correctly
+
+# fzf - Command-line fuzzy finder
+apk update && apk add --no-cache fzf && apk upgrade
 
 # fd - alternative to find with built-in gitignore support
 apk update && apk add --no-cache fd && apk upgrade
