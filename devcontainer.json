@@ -18,17 +18,17 @@
     // "workspaceMount": "source=${localWorkspaceFolder},target=/srv/jekyll,type=bind,consistency=cached",
     // "workspaceFolder": "/srv/jekyll",
     "shutdownAction": "stopContainer",
-    
+
     // C:\Users\emzfa\.vscode\extensions\ms-vscode-remote.remote-containers-0.243.0\dist\node_modules\vscode-dev-containers\container-features\devcontainer-features.json
     "features": {},
-    
+
     // Set *default* container specific settings.json values on container create.
     "settings": {
         // "dotfiles.repository": "",
         // "dotfiles.targetPath": "~/dotfiles",
         // "dotfiles.installCommand": "",
         // "remote.containers.copyGitConfig": true,
-        
+
         // Terminal
         "terminal.external.windowsExec": "C:\\WINDOWS\\system32\\wsl.exe -d Alpine",
         "terminal.integrated.profiles.windows": {
@@ -87,10 +87,9 @@
     "extensions": [
         // Theme / IDE
         "dracula-theme.theme-dracula", // IDE Theme
-        "PKief.material-icon-theme", // File Icons 
+        "PKief.material-icon-theme", // File Icons
         "antfu.icons-carbon", // Product Icons
         "ms-azuretools.vscode-docker", // Docker Panel
-        "iocave.customize-ui", // Customize UI
 
         // QoL
         "fabiospampinato.vscode-todo-plus", // Todo List for TODO files and Embedded todos
@@ -100,12 +99,12 @@
         "jasonlhy.hungry-delete", // Delete to the end of the line
         "mlazzarini.pair-programming-timer", // Countdown Timer for Interviews and Pair Programming
         "mngrm3a.shell-command", // Allows you to run VS Code commands from tasks.json
+        "stateful.runme", // Allows you to run commands from README.md files with the click of a button
         // "joshabb.resmongraphical", // Shows CPU Usage, Memory, and Disk Usage.
         // "spmeesseman.vscode-taskexplorer", // Shows All Tasks in the Task Explorer
 
         // AI-Assisted
-        "visualstudioexptteam.vscodeintellicode",
-        "GitHub.copilot",
+        "visualstudioexptteam.vscodeintellicode", // AI API usage examples and suggestions for JS/TS and Python
 
         // Code Reviews
         "github.vscode-pull-request-github", // Review and manage GitHub pull requests and issues
@@ -116,6 +115,10 @@
         // JavaScript / TypeScript
         "snyk-security.vscode-vuln-cost", // Vulnerability Cost
         "wix.vscode-import-cost", // Import Cost
+
+        // Markdown
+        "yzhang.markdown-all-in-one",
+        "bierner.markdown-emoji",
 
         // Linting
         "dbaeumer.vscode-eslint",
@@ -193,8 +196,14 @@
     // Uncomment when using a ptrace-based debugger like C++, Go, and Rust
     // "runArgs": [ "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined" ],
 
-    // Uncomment to use the Docker CLI from inside the container. See https://aka.ms/vscode-remote/samples/docker-in-docker.
-    // "mounts": [ "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind" ],
+    "mounts": [
+        // Allows usage of Docker CLI from inside the container. See https://aka.ms/vscode-remote/samples/docker-in-docker.
+        "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+        // Persists the user profile (to keep things like shell history) in your dev container across rebuilds.
+        // Currently causes issues when rebuilding
+        // "source=profile,target=/root,type=volume",
+        // "target=/root/.vscode-server,type=volume"
+    ],
 
     // Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
     "remoteUser": "root"

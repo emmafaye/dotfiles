@@ -1,6 +1,10 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# Adds correct spacing for icons in exa (ls replacement)
+# https://the.exa.website/docs/environment-variables
+export EXA_ICON_SPACING=2
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -21,14 +25,25 @@ ZSH_THEME='robbyrussell' # default theme - we override this with Starship Prompt
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git forgit node emoji zsh-autosuggestions zsh-syntax-highlighting tldr)
+plugins=(
+    git
+    forgit
+    node
+    emoji
+    # zsh-autocomplete
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+    tldr
+)
 
 source $ZSH/oh-my-zsh.sh
 # source $HOME/.zsh-autocomplete.zsh
 
 
 # Custom Keybindings
-bindkey '   ' autosuggest-accept # Tab to accept autosuggestion
+bindkey '^I' autosuggest-accept       # Tab - accept autosuggestion
+bindkey "^[^[[D" beginning-of-line    # Alt + Left Arrow - go to beginning of line
+bindkey "^[^[[C" end-of-line          # Alt + Right Arrow - go to end of line
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -80,6 +95,13 @@ alias glom='git fetch origin; gl origin/main --author="<$(git config user.email)
 # alias gco=git checkout main # Checkout branch main
 # alias gco=git_checkout_fallback # Checkout branch main or master
 
+# GitHub Aliases
+alias go='gh repo view --web'
+alias gli='gh issue list'
+alias gpl='gh pr list'
+alias gpc='gh pr create'
+alias ghs='gh status'
+
 # Custom functions
 alias ls='exa -lah -s type --time-style=iso --icons --git'
 alias find='fd'
@@ -121,7 +143,6 @@ COLOR_CYAN='\e[0;36m'
 COLOR_LIGHT_CYAN='\e[1;36m'
 COLOR_LIGHT_GRAY='\e[0;37m'
 COLOR_WHITE='\e[1;37m'
-
 
 # Custom Functions
 function chpwd() {

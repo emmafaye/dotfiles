@@ -16,12 +16,10 @@ apk update && apk add --no-cache starship && apk upgrade
 apk update && apk add --no-cache neovim && apk upgrade
 # Install NvChad - Fast neovim config with solid defaults and UI
 apk update && apk add --no-cache alpine-sdk ripgrep && apk upgrade # Needed for Lua configs and Telescope
-# apk update && apk add --no-cache gcc build-essential ripgrep && apk upgrade # Needed for Lua configs and Telescope
 git clone https://github.com/NvChad/NvChad ${HOME_PATH}/.config/nvim --depth 1
 mkdir -p ${NVIM_PATH}/lua/custom
 cp ${WORK_PATH}/.devcontainer/nvim/init.lua ${WORK_PATH}/.devcontainer/nvim/chadrc.lua ${NVIM_PATH}/lua/custom/
 nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-# TODO: Figure out why it doesn't work after first run and configure plugins correctly
 
 # fzf - Command-line fuzzy finder
 apk update && apk add --no-cache fzf && apk upgrade

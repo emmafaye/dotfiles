@@ -7,6 +7,9 @@ continuation_prompt = "▶▶"
 # # Inserts a blank line between shell prompts
 # add_newline = true
 
+# command duration timeout
+command_timeout = 800
+
 # -----------------------------------------------------------------
 
 format = """
@@ -41,6 +44,7 @@ $spack\
 [](fg:#86BBD8 bg:#06969A)\
 $docker_context\
 [](fg:#06969A bg:#33658A)\
+$status\
 $time\
 [ ](fg:#33658A)\
 """
@@ -54,10 +58,12 @@ format = '[$user ]($style)'
 
 [directory]
 read_only = " "
+home_symbol = " "
 style = "bg:#DA627D"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
+truncate_to_repo = false
 
 # Here is how you can shorten some long paths by text replacement
 # similar to mapped_locations in Oh My Posh.
@@ -74,16 +80,16 @@ truncation_symbol = "…/"
 "Videos" = " "
 "Projects" = " "
 "Desktop" = " "
+".oh-my-zsh/custom" = "  "
 "/usr/src/app" = " "
-"~" = " "
-".oh-my-zsh/custom" = " "
 "/usr/local/lib/node_modules" = " "
 
-# Replace the "❯" symbol in the prompt with "➜"
-# [character] # The name of the module we are configuring is "character"
-# success_symbol = "[➜](bold green)" # The format string used before the text input if the previous command succeeded.
-# error_symbol = "[➜](bold red) " # The format string used before the text input if the previous command failed.
-# vicmd_symbol  = "[❮](bold green)" # The format string used before the text input if the shell is in vim normal mode.
+[status]
+disabled = false
+style = "bg:#33658A"
+format = "[[ $symbol]($style)]($style)"
+symbol = "[]($style fg:red)"
+success_symbol = "[♥]($style fg:green)"
 
 [aws]
 symbol = "  "
@@ -200,4 +206,4 @@ format = '[[ $symbol ($version) ](bg:#86BBD8)]($style)'
 disabled = false
 time_format = "%R" # Hour:Minute Format
 style = "bg:#33658A"
-format = '[[ ♥ $time ](bg:#33658A)]($style)'
+format = '[[ $time ](bg:#33658A)]($style)'
